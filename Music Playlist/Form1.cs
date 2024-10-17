@@ -196,9 +196,12 @@ namespace Music_Playlist
             labelMusicName.Text=listBox1.SelectedItem.ToString();
         }
 
+        // This will display only names on ListBox
         private void listBox1_Format(object sender, ListControlConvertEventArgs e)
         {
             e.Value=Path.GetFileName(e.ListItem.ToString());    
         }
+
+
     }
 }

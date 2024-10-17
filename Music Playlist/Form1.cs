@@ -44,9 +44,9 @@ namespace Music_Playlist
                         mp3List.Add(file);
                     }
 
-                    // Refresh the binding to update listBox1
-                    //_bindingSource.ResetBindings(false);
-                    DisplayOnlyNames();
+                    //Refresh the binding to update listBox1
+                    _bindingSource.ResetBindings(false);
+                    //DisplayOnlyNames();
                 }
             }
 
@@ -68,7 +68,6 @@ namespace Music_Playlist
             // Refresh the binding to update listBox1
             _bindingSource.ResetBindings(false);
         }
-
 
         public void CreatePlaylistFile()
         {
@@ -92,7 +91,7 @@ namespace Music_Playlist
                 }
             }
 
-            DisplayOnlyNames() ;
+            //DisplayOnlyNames() ;
             
 
         }
@@ -154,6 +153,7 @@ namespace Music_Playlist
             }
         }
 
+        #region FORM CLOSE OPEN
         private void Form1_Load(object sender, EventArgs e)
         {
             LoadListToListbox();
@@ -163,9 +163,11 @@ namespace Music_Playlist
         {
             SaveToTxt();
         }
+        #endregion
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void textBoxSearch_TextChanged(object sender, EventArgs e)
         {
+         
             // Get the search term from textBox1
             string searchTerm = textBox1.Text.Trim();
 
@@ -187,6 +189,16 @@ namespace Music_Playlist
                 _bindingSource.DataSource = filteredList;
             }
             _bindingSource.ResetBindings(false);
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            labelMusicName.Text=listBox1.SelectedItem.ToString();
+        }
+
+        private void listBox1_Format(object sender, ListControlConvertEventArgs e)
+        {
+            e.Value=Path.GetFileName(e.ListItem.ToString());    
         }
     }
 }
